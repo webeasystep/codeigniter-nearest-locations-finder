@@ -29,6 +29,7 @@
                         <!-- display map  !-->
                         <div id="map" style="height: 600px; width:800px;"></div>
                         <!-- current latituide and longtuide  !-->
+                        <input id="ProviderId" name="ProviderId" type="hidden" value="" />
                         <input id="lat" type="hidden" value="" />
                         <input id="lng" type="hidden" value="" />
                         <button type="button" onclick="RelatedLocationAjax();">show_closest_providers</button>
@@ -47,6 +48,7 @@
     var lng = document.getElementById("lng"); // this will select the input with id = lng
     var info = document.getElementById("info"); // this will select the current div  with id = info
     var ServiceId = document.getElementById("ServiceId"); // this will select the input with id = ServiceId
+    var prov = document.getElementById("ProviderId"); // this will select the input with id = ProviderId
     var locations = [];
     var km = 30; // this kilometers used to specify circle wide when use drawcircle function
     var Crcl ; // circle variable
@@ -154,6 +156,7 @@
             google.maps.event.addListener(marker, 'click', (function (marker, i) {
                 return function () {
                     infowindow.setContent(marker.html);
+                    prov.value = data[i][5];
                     infowindow.open(map, marker);
                 }
             })
